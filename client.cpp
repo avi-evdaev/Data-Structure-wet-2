@@ -7,7 +7,7 @@ int Client::getDebt() const{
     return m_debt;
 }
 
-int Client::increaseDebt(int x) {
+void Client::increaseDebt(int x) {
     m_debt+=x;
 }
 
@@ -23,6 +23,6 @@ int Client::getPhoneNumber() const {
     return m_phoneNumber;
 }
 
-bool Client::getId() const{
+int Client::getId() const{
     return m_id;
 }

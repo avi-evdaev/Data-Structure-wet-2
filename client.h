@@ -17,14 +17,18 @@ public:
     ~Client() = default;
     
     int getDebt() const;
-    int increaseDebt(int x);
+    void increaseDebt(int x);
     bool getIsMember() const;
     void setIsMember(bool isMember);
     int getPhoneNumber() const;
-    bool getId() const;
+    int getId() const;
 
     bool operator==(const Client& other){
         return m_id == other.m_id;
+    }
+
+    bool operator!=(const Client& other){
+        return m_id != other.m_id;
     }
 };
 

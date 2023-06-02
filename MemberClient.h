@@ -8,7 +8,7 @@ private:
     int m_id;
 
 public:
-    MemberClient(int id) : m_id(id), m_debt(0) {}
+    MemberClient(int id) : m_id(id){}
     MemberClient(const MemberClient& other) = default;
     MemberClient& operator=(const MemberClient& other) = default;
     ~MemberClient() = default;
