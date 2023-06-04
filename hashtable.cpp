@@ -39,11 +39,11 @@ Client* HashTable::getData(Client* newData){
 
 void HashTable::rehashEnlarge(){
     double fillingPercentage = ((double)m_amount_of_elements/m_hashTable_size)*100;
-    if(fillingPercentage < (double)ENLARGE_PERCENTAGE)
+    if(fillingPercentage <= (double)ENLARGE_PERCENTAGE)
     {
         return;
     }
-    int newSize = 2*m_hashTable_size +1;//TO CHEKC IN THE FUTURE !!
+    int newSize = 2*m_hashTable_size;
     helperFunction(newSize);
 }
 
@@ -51,11 +51,11 @@ void HashTable::rehashEnlarge(){
 
 void HashTable::rehashReduce(){
     double fillingPercentage = ((double)m_amount_of_elements/m_hashTable_size)*100;
-    if(fillingPercentage > (double)REDUCE_PERCENTAGE || m_hashTable_size<=INITIAL_HASH_SIZE)
+    if(fillingPercentage >= (double)REDUCE_PERCENTAGE || m_hashTable_size<=INITIAL_HASH_SIZE)
     {
         return;
     }
-    int newSize = (m_hashTable_size-1)/2 ;//TO CHEKC IN THE FUTURE !!
+    int newSize = m_hashTable_size/2 ;
     helperFunction(newSize);
 }
 

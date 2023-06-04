@@ -13,26 +13,10 @@ class RecordsCompany {
     // todo
     Avl_Tree<MemberClient> m_membersTree;
 
-
-    
-
-
     int m_number_of_clients;
     int m_number_of_records;
-
-
-
-
     int* m_records_stocks;    
     int* m_records_bought;
-    int* m_unionFindParent;
-    int* m_unionFindRootSize;
-    int* m_unionFindExtra;
-
-
-
-
-
 
   public:
     RecordsCompany();

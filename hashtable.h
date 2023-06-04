@@ -14,7 +14,7 @@ private:
     int m_amount_of_elements;
     int m_hashTable_size;
 
-    static const int INITIAL_HASH_SIZE = 7;
+    static const int INITIAL_HASH_SIZE = 4;
     static const int ENLARGE_PERCENTAGE = 75;
     static const int REDUCE_PERCENTAGE = 25;
 
