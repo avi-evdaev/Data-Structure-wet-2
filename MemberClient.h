@@ -14,10 +14,6 @@ public:
     MemberClient& operator=(const MemberClient& other) = default;
     ~MemberClient() = default;
 
-    // void increaseDebt(int x);
-    // void eraseDebt();
-    // int getDebt() const
-
     void increaseDebt(int x) {
         m_debt+=x;
     }

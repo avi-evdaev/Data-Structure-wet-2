@@ -16,9 +16,6 @@ public:
     Client& operator=(const Client& other) = default;
     ~Client() = default;
     
-    //int getDebt() const;
-    // void increaseDebt(int x);
-    // void eraseDebt();
     bool getIsMember() const;
     void setIsMember(bool isMember);
     int getPhoneNumber() const;
