@@ -4,19 +4,24 @@
 #include "utilesWet2.h"
 #include "avl.h"
 #include "MemberClient.h"
-
-
+#include "unionfind.h"
+#include "hashtable.h"
 
 
 class RecordsCompany {
   private:
     // todo
     Avl_Tree<MemberClient> m_membersTree;
+    HashTable m_clientsHashTable;
+    UnionFindRecords m_recordsGroups;
 
     int m_number_of_clients;
     int m_number_of_records;
+    int m_number_of_members;
     int* m_records_stocks;    
     int* m_records_bought;
+
+    static const int RECORD_PRICE = 100;
 
   public:
     RecordsCompany();

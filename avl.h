@@ -35,6 +35,7 @@ private:
     int balanceFactor(Node<T>* vertex) const;
     void update_height(Node<T>* vertex);
     void DeleteNode(T* newData);
+    void helperIntializerExtra(Node<T>* node);
 public:
     Node<T>* root;
     Avl_Tree(): root(nullptr) {}
@@ -50,11 +51,27 @@ public:
     T* giveMax() const;
 
     void add(T* i, int x);
-    int find_prize(T* vertex);
+    double find_prize(T* vertex);
     void addPrize(T* t1, T* t2, double amount);
-    
+
+    void intializeExtra();
 };
 
+template <class T>
+void Avl_Tree<T>::intializeExtra() {
+    helperIntializerExtra(root);
+}
+
+template <class T>
+void Avl_Tree<T>::helperIntializerExtra(Node<T>* node){
+    if(!node){
+        return;
+    }
+    node->extra = 0;
+    helperIntializerExtra(node->right);
+    helperIntializerExtra(node->left);
+
+}
 
 template <class T>
 void Avl_Tree<T>::addPrize(T* t1, T* t2, double amount){
@@ -98,7 +115,7 @@ void Avl_Tree<T>::add(T* i, int x){ //מי שמאמין לא מתעד
 
 
 template <class T>
-int Avl_Tree<T>::find_prize(T* vertex){///CHECK THIS IN THE FUTURE
+double Avl_Tree<T>::find_prize(T* vertex){///CHECK THIS IN THE FUTURE
     Node<T>* temp = getVertexNode(vertex);
     int sum = 0;
     while(temp != root){

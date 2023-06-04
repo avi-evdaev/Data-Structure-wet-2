@@ -3,12 +3,12 @@
 
 
 template<class T>
-class Node{
+class ListNode{
 public:
-    Node* m_next;
+    ListNode* m_next;
     T* m_data;
 
-    Node(T* newData=nullptr, Node* next=nullptr) : m_data(newData),m_next(next) {}
+    ListNode(T* newData=nullptr, ListNode* next=nullptr) : m_data(newData),m_next(next) {}
 };
 
 
@@ -16,7 +16,7 @@ public:
 template<class T>
 class LinkedList{
 private:
-    Node<T>* head; 
+    ListNode<T>* head; 
     int size;
 public:
     LinkedList();
@@ -32,15 +32,15 @@ public:
 
 template<class T>
 LinkedList<T>::LinkedList(){
-    head = new Node<T>();
+    head = new ListNode<T>();
     size =0;
 }
 
 template<class T>
 LinkedList<T>::~LinkedList(){
-    Node<T>* current = head;
+    ListNode<T>* current = head;
     while(current!=nullptr){      
-        Node<T>* temp = current;
+        ListNode<T>* temp = current;
         current = current->m_next;
         delete temp;
     }
@@ -53,7 +53,7 @@ int LinkedList<T>::getSize() const{
 
 template<class T>
 bool LinkedList<T>::find(T* newData){
-    Node<T>* current = head->m_next;
+    ListNode<T>* current = head->m_next;
     while(current!=nullptr){
         if(*(current->m_data)== *(newData)){
             return true;
@@ -65,7 +65,7 @@ bool LinkedList<T>::find(T* newData){
 
 template<class T>
 T* LinkedList<T>::getData(T* newData){
-    Node<T>* current = head->m_next;
+    ListNode<T>* current = head->m_next;
     while(current!=nullptr){
         if(*(current->m_data)== *(newData)){
             return current->m_data;
@@ -77,7 +77,7 @@ T* LinkedList<T>::getData(T* newData){
 
 template<class T>
 void LinkedList<T>::insert(T* newData) {
-    Node<T>* newNode = new Node<T>(newData,head->m_next);
+    ListNode<T>* newNode = new ListNode<T>(newData,head->m_next);
     head->m_next = newNode;
     size++;
 }
@@ -88,12 +88,12 @@ void LinkedList<T>::remove(T* newData){
         return;
     }
 
-    Node<T>* current = head;
+    ListNode<T>* current = head;
     while(*(current->m_next->m_data)!=*newData){
         current = current->m_next;
     }
 
-    Node<T>* temp = current->m_next;
+    ListNode<T>* temp = current->m_next;
     current->m_next = temp->m_next;
     delete temp; 
     size--;  
@@ -101,7 +101,7 @@ void LinkedList<T>::remove(T* newData){
 
 template<class T>
 void LinkedList<T>::getAllElements(T** output){
-    Node<T>* current = head->m_next;
+    ListNode<T>* current = head->m_next;
     while (current)
     {
         *output = current->m_data;

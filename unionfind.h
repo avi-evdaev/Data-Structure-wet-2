@@ -19,6 +19,9 @@ public:
     void init(int *records_stocks, int number_of_records);
     int Find(int record_number);
     void Union(int b, int a);
+
+    int getHeight(int record_number) const;
+    int getColumn(int record_number) const;
 };
 
 

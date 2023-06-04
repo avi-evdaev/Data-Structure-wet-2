@@ -28,9 +28,9 @@ void UnionFindRecords::init(int *records_stocks, int number_of_records){//rememb
 int UnionFindRecords::Find(int record_number){
     int root = record_number;
     int sum = 0;
-    while (m_records_arry[root].m_parent == -1){
+    while (m_records_arry[root].m_parent != -1){
+        sum += m_records_arry[root].m_extra;        
         root = m_records_arry[root].m_parent;
-        sum += m_records_arry[root].m_extra;
     }
 
     int current = record_number;
@@ -56,6 +56,7 @@ void UnionFindRecords::Union(int b, int a){
         m_records_arry[a].m_height += m_records_arry[b].m_height;
         m_records_arry[b].m_rootSize = 0;
         m_records_arry[b].m_height = 0;
+        m_records_arry[b].m_column = 0;
     }
     else{
         m_records_arry[b].m_extra += h_a;
@@ -65,5 +66,29 @@ void UnionFindRecords::Union(int b, int a){
         m_records_arry[b].m_height += m_records_arry[a].m_height;
         m_records_arry[a].m_rootSize = 0;
         m_records_arry[a].m_height = 0;
+        m_records_arry[a].m_column = 0;
+        m_records_arry[b].m_column = m_records_arry[a].m_column ;
     }
 }
+
+int UnionFindRecords::getHeight(int record_number) const {
+        int root = record_number;
+        int sum = 0;
+        while (m_records_arry[root].m_parent != -1){
+            sum += m_records_arry[root].m_extra;
+            root = m_records_arry[root].m_parent;
+        }
+        sum += m_records_arry[root].m_extra;
+        return sum;
+}
+
+int UnionFindRecords::getColumn(int record_number) const {
+        int root = record_number;
+        
+        while (m_records_arry[root].m_parent != -1){
+            root = m_records_arry[root].m_parent;
+        }
+
+        return m_records_arry[root].m_column;
+}
+

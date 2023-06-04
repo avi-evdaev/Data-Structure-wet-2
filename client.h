@@ -11,13 +11,14 @@ private:
     int m_debt;
     bool m_isMember;
 public:
-    Client(int id, int phone);
+    Client(int id, int phone = 0);
     Client(const Client& other) = default;
     Client& operator=(const Client& other) = default;
     ~Client() = default;
     
-    int getDebt() const;
-    void increaseDebt(int x);
+    //int getDebt() const;
+    // void increaseDebt(int x);
+    // void eraseDebt();
     bool getIsMember() const;
     void setIsMember(bool isMember);
     int getPhoneNumber() const;
