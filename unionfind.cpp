@@ -66,8 +66,8 @@ void UnionFindRecords::Union(int b, int a){
         m_records_arry[b].m_height += m_records_arry[a].m_height;
         m_records_arry[a].m_rootSize = 0;
         m_records_arry[a].m_height = 0;
-        m_records_arry[a].m_column = 0;
-        m_records_arry[b].m_column = m_records_arry[a].m_column ;
+        m_records_arry[b].m_column = m_records_arry[a].m_column;
+        m_records_arry[a].m_column = 0;        
     }
 }
 

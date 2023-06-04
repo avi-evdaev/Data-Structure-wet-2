@@ -6,6 +6,7 @@ RecordsCompany::RecordsCompany() :m_number_of_clients(0), m_number_of_records(0)
 RecordsCompany::~RecordsCompany() {} //to do 
 
 StatusType RecordsCompany::newMonth(int *records_stocks, int number_of_records) {
+    m_number_of_records = number_of_records;
     if(number_of_records<0){
         return StatusType::INVALID_INPUT;
     }

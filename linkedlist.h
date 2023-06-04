@@ -8,7 +8,7 @@ public:
     ListNode* m_next;
     T* m_data;
 
-    ListNode(T* newData=nullptr, ListNode* next=nullptr) : m_data(newData),m_next(next) {}
+    ListNode(T* newData=nullptr, ListNode* next=nullptr) : m_next(next), m_data(newData) {}
 };
 
 

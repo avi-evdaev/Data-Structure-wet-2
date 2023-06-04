@@ -15,7 +15,7 @@ public:
     double extra;
     int height;
     Node(T* new_data,int extra =0 , Node* left_son = nullptr, Node* right_son = nullptr, Node* new_father = nullptr, int newHeight = 0) :
-         data(new_data), left(left_son), right(right_son), father(new_father), height(newHeight), extra(extra) {}
+         data(new_data), left(left_son), right(right_son), father(new_father), extra(extra), height(newHeight)  {}
 };
 
 
