@@ -3,7 +3,36 @@
 RecordsCompany::RecordsCompany() :m_number_of_clients(0), m_number_of_records(0),m_number_of_members(0),
                 m_records_stocks(nullptr), m_records_bought(nullptr) {}
 
-RecordsCompany::~RecordsCompany() {} //to do 
+RecordsCompany::~RecordsCompany() {
+    //deleting the avl tree
+    if(m_number_of_members>0){
+        MemberClient** temp_arry = new MemberClient*[m_number_of_members];        
+        m_membersTree.getAllDataArry(temp_arry);
+        for(int i =0;i<m_number_of_members;i++){
+            delete temp_arry[i];
+        }
+        delete[] temp_arry;        
+    }
+
+
+    //deleting the hashtable:
+    if(m_number_of_clients>0){
+        Client** temp_hashtable_arry= new Client*[m_number_of_clients];
+        m_clientsHashTable.getAllElements(temp_hashtable_arry);
+        for(int i =0;i<m_number_of_clients;i++){
+            delete temp_hashtable_arry[i];
+        }
+        delete[] temp_hashtable_arry;
+    }
+
+    //deleting the records dataStructure:
+    if(m_records_bought){
+        delete[] m_records_bought;
+    }
+    if(m_records_stocks){
+        delete[] m_records_stocks;
+    } 
+} 
 
 StatusType RecordsCompany::newMonth(int *records_stocks, int number_of_records) {
     m_number_of_records = number_of_records;
@@ -86,7 +115,14 @@ StatusType RecordsCompany::addCostumer(int c_id, int phone){
         return StatusType::ALREADY_EXISTS;
     }
 
-    m_clientsHashTable.insert(newClient);
+    try{
+        m_clientsHashTable.insert(newClient);
+    }
+    catch(...){
+        delete newClient;
+        return StatusType::ALLOCATION_ERROR;
+    }
+    m_number_of_clients++;
     return StatusType::SUCCESS;
 }
 
@@ -134,6 +170,7 @@ StatusType RecordsCompany::makeMember(int c_id) {
         m_membersTree.InsertNode(newMember);
     }
     catch(...){
+        delete newMember;
         return StatusType::ALLOCATION_ERROR;
     }
     

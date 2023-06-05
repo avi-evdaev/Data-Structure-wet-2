@@ -3,14 +3,14 @@
 
 #include "utilesWet2.h"
 #include "client.h"
-#include "linkedlist.h"
+#include "avl.h"
 #include <iostream>
 
 
 
 class  HashTable{//assum that T have an integer filed calld id
 private:
-    LinkedList<Client>* m_hashTable;
+    Avl_Tree<Client>* m_hashTable;
     int m_amount_of_elements;
     int m_hashTable_size;
 

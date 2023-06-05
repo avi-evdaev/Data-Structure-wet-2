@@ -8,19 +8,19 @@ int hashFunction(Client* client, int x){
 HashTable:: HashTable(){
     m_amount_of_elements = 0;
     m_hashTable_size = INITIAL_HASH_SIZE;
-    m_hashTable = new LinkedList<Client>[m_hashTable_size];
+    m_hashTable = new Avl_Tree<Client>[m_hashTable_size];
 }
 
 void HashTable::insert(Client* newData){
     int key = hashFunction(newData,m_hashTable_size);
-    m_hashTable[key].insert(newData);
+    m_hashTable[key].InsertNode(newData);
     m_amount_of_elements++;
     rehashEnlarge();
 }
 
 void HashTable::remove(Client* newData){
     int key = hashFunction(newData, m_hashTable_size);
-    m_hashTable[key].remove(newData);
+    m_hashTable[key].DeleteNode(newData);
     m_amount_of_elements--;
     rehashReduce();
 }
@@ -28,12 +28,12 @@ void HashTable::remove(Client* newData){
 
 bool HashTable::find(Client* newData) const{
     int key = hashFunction(newData,m_hashTable_size);
-    return m_hashTable[key].find(newData);
+    return m_hashTable[key].isVertexExist(newData);
 }
 
 Client* HashTable::getData(Client* newData){
     int key = hashFunction(newData,m_hashTable_size);
-    return m_hashTable[key].getData(newData);
+    return m_hashTable[key].getVertex(newData);
 }
 
 
@@ -61,20 +61,20 @@ void HashTable::rehashReduce(){
 
 
 void HashTable::helperFunction(int newSize){
-    LinkedList<Client>* newHashTable = new LinkedList<Client>[newSize];
+    Avl_Tree<Client>* newHashTable = new Avl_Tree<Client>[newSize];
     Client** allData = new Client*[m_amount_of_elements];
 
     int sum =0;
     for(int i=0; i<m_hashTable_size;++i){
         int temp = m_hashTable[i].getSize();
-        m_hashTable[i].getAllElements(allData+sum);
+        m_hashTable[i].getAllDataArry(allData+sum);
         sum+=temp;   
     }
 
     for(int i =0; i<m_amount_of_elements;i++)
     {
         int key = hashFunction(allData[i],newSize);
-        newHashTable[key].insert(allData[i]);
+        newHashTable[key].InsertNode(allData[i]);
     }
     
     delete[] m_hashTable;
@@ -92,7 +92,7 @@ void HashTable::getAllElements(Client** output) const{
     int sum =0;
     for(int i=0; i<m_hashTable_size;++i){
         int temp = m_hashTable[i].getSize();
-        m_hashTable[i].getAllElements(output+sum);
+        m_hashTable[i].getAllDataArry(output+sum);
         sum+=temp;   
     }
 }

@@ -21,12 +21,20 @@ public:
     int getPhoneNumber() const;
     int getId() const;
 
-    bool operator==(const Client& other){
+    bool operator==(const Client& other) const{
         return m_id == other.m_id;
     }
 
-    bool operator!=(const Client& other){
+    bool operator!=(const Client& other) const{
         return m_id != other.m_id;
+    }
+
+    bool operator<(const Client& other) const{
+        return m_id < other.m_id;
+    }
+
+    bool operator>(const Client& other) const{
+        return m_id > other.m_id;
     }
 };
 

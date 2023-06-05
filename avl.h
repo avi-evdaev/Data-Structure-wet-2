@@ -34,15 +34,16 @@ private:
 
     int balanceFactor(Node<T>* vertex) const;
     void update_height(Node<T>* vertex);
-    void DeleteNode(T* newData);
+
     void helperIntializerExtra(Node<T>* node);
+    int size;
 public:
     Node<T>* root;
-    Avl_Tree(): root(nullptr) {}
+    Avl_Tree(): size(0),root(nullptr) {}
     ~Avl_Tree();
 
     void InsertNode(T* newData);
-
+    void DeleteNode(T* newData);
     T* getVertex(T* newData) const;
     bool isVertexExist(T* newData) const;
 
@@ -55,7 +56,14 @@ public:
     void addPrize(T* t1, T* t2, double amount);
 
     void intializeExtra();
+    int getSize() const;
 };
+
+template <class T>
+int Avl_Tree<T>::getSize() const{
+    return size;
+}
+
 
 template <class T>
 void Avl_Tree<T>::intializeExtra() {
@@ -191,6 +199,7 @@ void Avl_Tree<T>::DeleteNode(T* newData){
         if(badNode == root){
             root = nullptr;
             delete badNode;
+            size = 0;
             return;
         }
 
@@ -273,6 +282,7 @@ void Avl_Tree<T>::DeleteNode(T* newData){
     }
 
     if(!v){
+        size--;
         return;
     }
 
@@ -303,12 +313,15 @@ void Avl_Tree<T>::DeleteNode(T* newData){
         }
 
         if(old_v_height==v->height){
+            size--;
             return;
         }
         else{
             v = v->father;
         }       
     }
+
+    size--;
 }
 
 
@@ -485,6 +498,7 @@ void Avl_Tree<T>::InsertNode(T* newData){
     Node<T>* current = this->root;
     if (this->root == nullptr){
         this->root = newNode;
+        size++;
         return;
     }
    
@@ -551,8 +565,7 @@ void Avl_Tree<T>::InsertNode(T* newData){
             v = p;
         }
     }
-
-
+    size++;
 }  
 
 
