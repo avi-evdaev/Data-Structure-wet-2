@@ -209,7 +209,7 @@ StatusType RecordsCompany::buyRecord(int c_id, int r_id) {
         temp->increaseDebt(RECORD_PRICE + m_records_bought[r_id]);
     }
 
-    m_records_bought[r_id]++;                        //DONT YOU NEED TO CHECK THAT YOU HAVE ENOUGH REOCRDS ???
+    m_records_bought[r_id]++;                      
     return StatusType::SUCCESS;
 }
 
@@ -258,9 +258,9 @@ StatusType RecordsCompany::putOnTop(int r_id1, int r_id2) {
         return StatusType::DOESNT_EXISTS;
     }
     int find_r_id1 = m_recordsGroups.Find(r_id1);
-    int find_r_id2 = m_recordsGroups.Find(r_id2); 
+    int find_r_id2 = m_recordsGroups.Find(r_id2);
 
-    if(find_r_id1==find_r_id2 ){
+    if(find_r_id1==find_r_id2 || r_id1 == r_id2 ){
         return StatusType::FAILURE;
     }
     m_recordsGroups.Union(find_r_id1,find_r_id2);

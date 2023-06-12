@@ -31,7 +31,7 @@ int UnionFindRecords::Find(int record_number){
     while (m_records_arry[root].m_parent != -1){
         sum += m_records_arry[root].m_extra;        
         root = m_records_arry[root].m_parent;
-    }
+    } 
 
     int current = record_number;
     int toSubtract=0;
@@ -39,9 +39,9 @@ int UnionFindRecords::Find(int record_number){
         int temp = m_records_arry[current].m_extra;
         m_records_arry[current].m_extra = sum - toSubtract;
         toSubtract+=temp;
-        current = m_records_arry[current].m_parent;
-        m_records_arry[current].m_parent = root;            
-    }
+        m_records_arry[current].m_parent = root;  
+        current = m_records_arry[current].m_parent;     
+    }    
     return root;
 }
 
