@@ -8,7 +8,7 @@
 
 
 
-class  HashTable{//assum that T have an integer filed calld id
+class  HashTable{
 private:
     Avl_Tree<Client>* m_hashTable;
     int m_amount_of_elements;

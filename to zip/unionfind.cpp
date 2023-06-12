@@ -9,7 +9,7 @@ UnionFindRecords::~UnionFindRecords(){
     }
 }
 
-void UnionFindRecords::init(int *records_stocks, int number_of_records){//remember to check the allocation outside !
+void UnionFindRecords::init(int *records_stocks, int number_of_records){
 
     Record* temp = new Record[number_of_records];
     if(m_initalized){

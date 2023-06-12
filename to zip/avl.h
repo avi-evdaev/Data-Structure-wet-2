@@ -90,7 +90,7 @@ void Avl_Tree<T>::addPrize(T* t1, T* t2, double amount){
 
 
 template <class T>
-void Avl_Tree<T>::add(T* i, int x){ //מי שמאמין לא מתעד 
+void Avl_Tree<T>::add(T* i, int x){ 
     Node<T>* current = root;
     bool last_turn_is_right = false;
     while(current != nullptr){
@@ -123,7 +123,7 @@ void Avl_Tree<T>::add(T* i, int x){ //מי שמאמין לא מתעד
 
 
 template <class T>
-double Avl_Tree<T>::find_prize(T* vertex){///CHECK THIS IN THE FUTURE
+double Avl_Tree<T>::find_prize(T* vertex){
     Node<T>* temp = getVertexNode(vertex);
     int sum = 0;
     while(temp != root){

@@ -10,7 +10,6 @@
 
 class RecordsCompany {
   private:
-    // todo
     Avl_Tree<MemberClient> m_membersTree;
     HashTable m_clientsHashTable;
     UnionFindRecords m_recordsGroups;
